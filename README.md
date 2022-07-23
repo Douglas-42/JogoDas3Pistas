@@ -4,7 +4,8 @@
 # Jogo Das 3 Pistas
 Jogo Das 3 Pistas é um jogo inspirado no jogo das 3 dicas do Silvio Santos.
 O jogador precisa adivinhar a palavra em até três tentativas e com três pistas.
-Você pode testar [o jogo aqui](https://jogarjogos.com.br/jogos/3pistas)
+Você pode testar [o jogo aqui] (https://jogarjogos.com.br/jogos/3pistas)
+<br />
 
 <p align="center">
   <img src="https://i.imgur.com/QKPSBuc.png" width="250px" height="auto" />
