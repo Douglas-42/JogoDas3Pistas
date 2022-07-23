@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Pistas</title>
+    <meta name="description" content="Jogo de adivinhar palavras com 3 pistas">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="modal hidden"></div>
+    <div class="menu outOfScreen">
+        <button onclick="ToogleMenuVisibility()">
+            <i class="fa-solid fa-x"></i>
+        </button>
+        <div class="moreGames">
+            <p>
+                Jogue também
+            </p>
+            <div class="gameCard">
+                <p>Damas</p>
+                <img src="https://s.h5games.online/images/master-checkers.jpg" alt="Tabuleiro de damas" >
+                <a href="https://www.jogarjogos.com.br/jogos/master-checkers.html">JOGAR</a>
+            </div>
+            <div class="gameCard">
+                <p>Dot Rush</p>
+                <img src="https://img.gamemonetize.com/a7qdvk6s1htr65x9ggwk41yq2oo7ni7y/512x384.jpg" alt="Ícone do jogo Dot Rush " >
+                <a href="https://www.jogarjogos.com.br/jogos/dot-rush.html">JOGAR</a>
+            </div>
+            <div class="gameCard">
+                <p>Minigolf Master</p>
+                <img src="https://s.h5games.online/images/minigolf-master.jpg" alt="Ícone do jogo Minigolf Master">
+                <a href="https://jogarjogos.com.br/jogos/minigolf-master.html">JOGAR</a>
+            </div>
+        </div>
+        <p>Criado por <a href="">Douglas Araujo</a></p>
+        <p>Código fonte no <a href="">Github</a></p>
+        
+    </div>
+    <div class="container">
+        <header>
+            <div>
+                <button>
+                    <i class="fa-solid fa-bars" onclick="ToogleMenuVisibility()"></i>
+                </button>
+                <button onclick="ShowModal(getHelpModal())">
+                    <i class="fa-solid fa-question"></i>
+                </button>
+            </div>
+            <div>
+                <h1>3 PISTAS</h1>
+                <p id="currentChallenge">Desafio #01</p>
+            </div>
+            <div>
+                <button onclick="ShowModal(getProgressModal(player.data))">
+                    <i class="fa-solid fa-chart-simple"></i>
+                </button>
+                <button>
+                    <i class="fa-solid fa-moon" onclick="SwitchTheme()"></i>
+                </button>
+            </div>
+        </header>
+        <div class="game">
+            <div class="hintPanel">
+                <p class="label">Pistas</p>
+                <ol reversed>
+                    <li class="hintLI">_ _ _ _ </li>
+                    <li class="hintLI lastHint">_ _ _ _</li>
+                    <li class="hintLI">_ _ _ _ _</li>
+                </ol>
+            </div>
+            <div class="wordPanel">
+            </div>
+            <div class="keyboard">
+                <div class="nextChallengeTimer hidden">
+                    <p>Próximo desafio disponível em:</p>
+                    <p class="timer">23:59:59</p>
+                </div>
+                <div class="row">
+                    <button class="key" onclick="AddLetter('Q')">Q</button>
+                    <button class="key" onclick="AddLetter('W')">W</button>
+                    <button class="key" onclick="AddLetter('E')">E</button>
+                    <button class="key" onclick="AddLetter('R')">R</button>
+                    <button class="key" onclick="AddLetter('T')">T</button>
+                    <button class="key" onclick="AddLetter('Y')">Y</button>
+                    <button class="key" onclick="AddLetter('U')">U</button>
+                    <button class="key" onclick="AddLetter('I')">I</button>
+                    <button class="key" onclick="AddLetter('O')">O</button>
+                    <button class="key" onclick="AddLetter('P')">P</button>
+                </div>
+                <div class="row">
+                    <button class="key" onclick="AddLetter('A')">A</button>
+                    <button class="key" onclick="AddLetter('S')">S</button>
+                    <button class="key" onclick="AddLetter('D')">D</button>
+                    <button class="key" onclick="AddLetter('F')">F</button>
+                    <button class="key" onclick="AddLetter('G')">G</button>
+                    <button class="key" onclick="AddLetter('H')">H</button>
+                    <button class="key" onclick="AddLetter('J')">J</button>
+                    <button class="key" onclick="AddLetter('K')">K</button>
+                    <button class="key" onclick="AddLetter('L')">L</button>
+                    <button class="key remove" onclick="RemoveLetter()">
+                        <i class="fa-solid fa-delete-left" style="color:#fff;"></i>
+                    </button>
+                </div>
+                <div class="row">
+                    <button class="key" onclick="AddLetter('Z')">Z</button>
+                    <button class="key" onclick="AddLetter('X')">X</button>
+                    <button class="key" onclick="AddLetter('C')">C</button>
+                    <button class="key" onclick="AddLetter('V')">V</button>
+                    <button class="key" onclick="AddLetter('B')">B</button>
+                    <button class="key" onclick="AddLetter('N')">N</button>
+                    <button class="key" onclick="AddLetter('M')">M</button>
+                    <button class="key enter" onclick="Guess()">ENTER</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="rightAnswerAudioClip">
+        <source src="/res/sfx/rightAnswer.wav" type="audio/wav">
+    </audio>
+    <audio id="wrongAnswerAudioClip">
+        <source src="/res/sfx/wrongAnswer.wav" type="audio/wav">
+    </audio>
+    <script src="src/variables.js"></script>
+    <script src="src/dataHandler.js"></script>
+    <script src="src/modals.js"></script>
+    <script src="src/ui.js"></script>
+    <script src="src/game.js"></script>
+</body>
+</html>

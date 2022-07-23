@@ -1,0 +1,395 @@
+:root {
+    --color2: #242121;
+    --green: #25850D;
+    --lgreen: #58FF2F;
+    --red: #FF2F2F;
+    --lred: #FF2F2F;
+    --color1: #eee;
+    --brown: #353131;
+    --lbrown: #787878;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+html,body{
+    font-size: 16px;
+    background-color: var(--color2);
+    height: 100%;
+    color: var(--color1);
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.container{
+    width: 100%;
+    max-width: 65.5rem;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0.5rem 0 0.5rem 0;
+}
+i{
+    color: var(--color1);
+}
+button{
+    background-color: var(--color2);
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 0.1rem solid var(--color1);
+    border-radius: 0.3rem;
+    transition: all 0.25s;
+}
+button:hover{
+    opacity: 0.75;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+button:active{
+    color: var(--color2);
+    background-color: var(--color1);
+}
+header{
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+h1{
+    font-size: 2.25rem;
+    font-weight: bold;
+    text-align: center;
+}
+#currentChallenge{
+    color:var(--color1);
+    font-weight: lighter;
+    text-transform: uppercase;
+    text-align: center;
+    z-index: 10;
+    transition: all 0.5s;
+}
+.game{
+    flex: 1;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.hintPanel{
+    position:relative;
+    width: 18rem;
+    height: 6.25rem;
+    border: 0.1rem solid var(--color1);
+    border-radius: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.hintPanel .label{
+    background-color: var(--color2);
+    color:var(--color1);
+    position:absolute;
+    margin-top: -6.25rem;
+    width: 5rem;
+    font-weight: bold;
+    text-align: center;
+}
+li{
+    color: var(--color1);
+}
+.lastHint{
+    color: var(--color1);
+}
+.wordPanel{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wordCell{
+    flex: 1;
+    height: 3.125rem;
+    max-width: 3.125rem;
+    max-height: 3.125rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 0.3rem;
+    background-color: var(--brown);
+    border: 0.2rem solid var(--lbrown);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    transition: all 0.25s;
+    color:var(--color1);
+}
+.solved{
+    background-color: var(--green);
+    border-color: var(--lgreen);
+}
+.wrongAnswer{
+    background-color: var(--red);
+    border-color: var(--lred);
+}
+.keyboard{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0.5rem;
+}
+.nextChallengeTimer{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right:0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+.nextChallengeTimer > p{
+    text-align: center;
+}
+.nextChallengeTimer > .timer{
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.row{
+    margin-top: 1.5rem;
+    width: 100%;
+    display: flex;
+}
+.key{
+    flex: 1;
+    border-color: var(--lbrown);
+    color: var(--color1);
+    font-size: 1.5rem;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+    height: 2.25rem;
+}
+.key:hover{
+    border-radius: 0.3rem;
+    border-color: var(--color1);
+}
+.enter{
+    background-color: var(--green);
+    border-color: var(--lgreen);
+    flex:3;
+}
+.remove{
+    background-color: var(--red);
+    border-color: var(--lred);
+}
+.modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transition: all 0.25s;
+}
+.modal .content{
+    background-color: var(--brown);
+    width: 100%;
+    height: 80%;
+    max-width: 40rem;
+    max-height: 37.5rem;
+    border-radius: 0.3rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    color: #fff;
+}
+.modal .content > p{
+    margin-top: 0.5rem;
+    text-align: justify;
+}
+.modal li{
+    color: #fff;
+}
+.modal .content > button{
+    background-color: var(--green);
+    border-color: var(--lgreen);
+    color: #fff;
+    width: 10rem;
+    height: 3.5rem;
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+}
+.modal .content .subtitle{
+    text-align: center; 
+    font-weight: normal; 
+    margin-top: 0.25rem;
+}
+.progressCell{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+}
+.progressCell > div{
+    display: flex;
+    flex-direction: column;
+    margin: 0 1rem;
+}
+.progressCell > div .info{
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+.menu{
+    position: fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    width: 15rem;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 20;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.75s;
+}
+.moreGames{
+    height: 75vh;
+    max-height: 75vh;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+}
+.moreGames > p{
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 200;
+    color: #fff;
+    
+}
+.menu > button{
+    border-radius: 50%;
+    align-self: flex-end;
+    background-color: #fff;
+    margin-bottom: 0.5rem;
+}
+.menu > p{
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+.menu > button i{
+    font-size: 1rem;
+    color: #000;
+    
+}
+.menu  a{
+    font-size: 0.85rem;
+    color: #fff;
+}
+.menu  a:hover{
+    color: #eee;
+}
+.menu  a:visited{
+    color: #fff;
+}
+.gameCard {
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    border-radius: 1rem;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+}
+.gameCard a{
+    width: 8rem;
+    background-color: var(--green);
+    color:#fff;
+    margin-top: 0.5rem;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.5rem;
+    border-radius: 0.3rem;
+}
+.gameCard p{
+    margin-bottom: 0.5rem;
+}
+.gameCard img{
+    width: 8rem;
+    height: auto;
+}
+.hidden{
+    opacity: 0;
+    z-index: -1;
+}
+.outOfScreen{
+    left: -15rem;
+}
+i{
+    font-size: 1.5rem;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+@media only screen and (max-width: 475px) {
+    h1{
+        font-size: 1.15rem;
+        font-weight: bold;
+    }
+    button{
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .wordCell{
+        margin-left: 0.15rem;
+        margin-right: 0.15rem;
+    }
+    i{
+        font-size: 1rem;
+    }
+    .key{
+        font-size: 1rem;
+    }
+    .modal .content{
+        justify-content: space-evenly;
+    }
+    .modal .content .hintPanel{
+        display: none;
+    }
+}
