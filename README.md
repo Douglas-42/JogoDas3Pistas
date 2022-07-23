@@ -7,7 +7,6 @@ O jogador precisa adivinhar a palavra em até três tentativas e com três pista
 Você pode testar <a href="https://jogarjogos.com.br/jogos/3pistas/">o jogo aqui</a>
 
 <p align="center" >
-  &nbsp;
   <img src="https://i.imgur.com/QKPSBuc.png" width="250px" height="auto" />
   <img src="https://i.imgur.com/5jexQG5.png" width="250px" height="auto" />
 </p>
