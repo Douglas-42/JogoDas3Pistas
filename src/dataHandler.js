@@ -1,5 +1,5 @@
 async function GetWords() {
-    const response = await fetch("JogoDas3Pistas/res/words.json");
+    const response = await fetch("/res/words.json");
     const json = await response.json();
     return json;
 }
